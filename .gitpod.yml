@@ -1,6 +1,11 @@
+
 tasks:
   - init: |
       sdk selfupdate
     command: |
       sdk env install
       sdk env
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack
