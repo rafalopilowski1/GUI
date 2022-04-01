@@ -1,3 +1,5 @@
+package zad2.src;
+
 import java.util.Arrays;
 
 public class Wiek {
