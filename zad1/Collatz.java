@@ -5,7 +5,8 @@ public class Collatz {
         int init = 77031, count = -1, maxel = 0;
         Hailstone hailstone = new Hailstone(init);
         for (int h : hailstone) {
-            if (h > maxel) maxel = h;
+            if (h > maxel)
+                maxel = h;
             ++count;
         }
         System.out.println(init + " " + count + " " + maxel);
@@ -28,6 +29,7 @@ class Hailstone implements Iterable<Integer> {
 class HailstoneIterator implements Iterator<Integer> {
     Hailstone data;
     boolean init_sent;
+
     HailstoneIterator(Hailstone data) {
         this.data = data;
         init_sent = false;
@@ -53,4 +55,3 @@ class HailstoneIterator implements Iterator<Integer> {
         return data.num;
     }
 }
-
