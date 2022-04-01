@@ -1,5 +1,6 @@
 tasks:
   - init: |
+      sdk selfupdate
       sdk env install
     command: |
       sdk env
