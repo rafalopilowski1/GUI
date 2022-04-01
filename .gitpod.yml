@@ -1,5 +1,5 @@
 tasks:
   - init: |
-      sdk install java 18-tem
+      sdk env install
     command: |
-      sdk default java 18-tem
+      sdk env
