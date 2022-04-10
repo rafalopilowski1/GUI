@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package zad2;
 
 public class Spiewanie {
     public static void main(String[] args) {

@@ -1,0 +1,133 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Assign2",
+            "request": "launch",
+            "mainClass": "Assign2",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch People",
+            "request": "launch",
+            "mainClass": "src.People",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Collatz",
+            "request": "launch",
+            "mainClass": "zad1.Collatz",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Kolory",
+            "request": "launch",
+            "mainClass": "zad1.Kolory",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Matma",
+            "request": "launch",
+            "mainClass": "zad1.Matma",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch PersonCollect",
+            "request": "launch",
+            "mainClass": "zad1.PersonCollect",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Tekstowe",
+            "request": "launch",
+            "mainClass": "zad1.Tekstowe",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Generics",
+            "request": "launch",
+            "mainClass": "zad2.Generics",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Matma2",
+            "request": "launch",
+            "mainClass": "zad2.Matma2",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Samochody",
+            "request": "launch",
+            "mainClass": "zad2.Samochody",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Spiewanie",
+            "request": "launch",
+            "mainClass": "zad2.Spiewanie",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Wiek",
+            "request": "launch",
+            "mainClass": "zad2.src.Wiek",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayFilter",
+            "request": "launch",
+            "mainClass": "zad3.ArrayFilter",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Odwracanie",
+            "request": "launch",
+            "mainClass": "zad3.Odwracanie",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch SortingPeople",
+            "request": "launch",
+            "mainClass": "zad3.SortingPeople",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Zakupy",
+            "request": "launch",
+            "mainClass": "zad3.Zakupy",
+            "projectName": "GUI_9dfd1a0a"
+        },
+        {
+            "type": "java",
+            "name": "Launch Transforms",
+            "request": "launch",
+            "mainClass": "zad3.src.Transforms",
+            "projectName": "GUI_9dfd1a0a"
+        }
+    ]
+}

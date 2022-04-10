@@ -45,7 +45,7 @@ public class Zakupy {
                 value.add(purchase);
                 map.put(key,value);
             }
-
+            scan.close();
             FileOutputStream fos = new FileOutputStream("2022-04-08/zad3/output.txt");
             ArrayList<String> list = new ArrayList<>();
             map.forEach((key, value) -> {
@@ -61,6 +61,7 @@ public class Zakupy {
                     exception.printStackTrace();
                 }
             });
+            fos.close();
         } catch (IOException exception) {
             exception.printStackTrace();
         }

@@ -1,3 +1,5 @@
+package zad3;
+
 public class Odwracanie {
     public static void main(String[] args) {
         Reversible[] revers = new Reversible[] {

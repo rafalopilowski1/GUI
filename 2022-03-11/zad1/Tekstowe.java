@@ -1,4 +1,4 @@
-
+package zad1;
 public class Tekstowe {
     public static void main(String[]args) {
         TwoStringOper[] a = {
