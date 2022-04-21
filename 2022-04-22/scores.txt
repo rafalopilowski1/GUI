@@ -1,0 +1,5 @@
+Mary 12c 78
+Jane 12c 90
+Bill 13c 68
+Kate 12c 76
+John 13c 66
