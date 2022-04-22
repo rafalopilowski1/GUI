@@ -3,6 +3,8 @@ package src;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
@@ -12,22 +14,23 @@ import java.util.stream.Stream;
 class Words implements Iterable<Entry<String, Integer>> {
     private final Map<String, Integer> wordsMap;
 
-    public Words(String file) {
-        byte[] arr = {};
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            arr = fis.readAllBytes();
-            fis.close();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-        String text = new String(arr);
-        String[] spitted = text.split("\\s");
-        wordsMap = Words.init(spitted);
+    public Words(String file) throws IOException {
+//        byte[] arr = {};
+//        try {
+//            FileInputStream fis = new FileInputStream(file);
+//            arr = fis.readAllBytes();
+//            fis.close();
+//        } catch (IOException exception) {
+//            exception.printStackTrace();
+//        }
+//        String text = new String(arr);
+//        String[] spitted = text.split("\\s");
+        Stream<String> stringStream = Files.lines(Paths.get(file)).flatMap((str) -> Arrays.stream(str.split("\\s")));
+        wordsMap = Words.init(stringStream);
     }
 
-    public static Map<String, Integer> init(String[] splitted) {
-        List<String> words = Arrays.stream(splitted)
+    public static Map<String, Integer> init(Stream<String> splitted) {
+        List<String> words = splitted
                 .map(
                         (word) -> word
                                 .chars()
@@ -66,7 +69,7 @@ class Words implements Iterable<Entry<String, Integer>> {
 }
 
 public class Slowa {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String file = "CountWords.txt";
         for (Map.Entry<String, Integer> e : new Words(file))
             System.out.println(
