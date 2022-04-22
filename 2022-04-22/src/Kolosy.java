@@ -1,3 +1,5 @@
+package src;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
@@ -5,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-class Student {
+class StudentKolos {
     private String name;
     private String group;
     private int score;
 
-    public Student(String name, String group, int score) {
+    public StudentKolos(String name, String group, int score) {
         this.name = name;
         this.group = group;
         this.score = score;
@@ -47,12 +49,10 @@ public class Kolosy {
         }
         String text = new String(array);
         String[] lines = text.split("\\n");
-        Map<String, List<Student>> studentMap = Arrays.stream(lines).map((line) -> {
+        Map<String, List<StudentKolos>> studentMap = Arrays.stream(lines).map((line) -> {
             String[] details = line.split("\\s");
-            return new Student(details[0],details[1],Integer.parseInt(details[2]));
-        }).collect(Collectors.groupingBy(Student::getGroup));
-        studentMap.forEach((group, students) -> {
-            System.out.printf("Group %s: %s%n",group, Arrays.toString(students.toArray()));
-        });
+            return new StudentKolos(details[0],details[1],Integer.parseInt(details[2]));
+        }).collect(Collectors.groupingBy(StudentKolos::getGroup));
+        studentMap.forEach((group, students) -> System.out.printf("Group %s: %s%n",group, Arrays.toString(students.toArray())));
     }
 }
