@@ -21,9 +21,11 @@ public class Randomness {
                 .collect(
                         Collectors.groupingBy(Map.Entry::getKey)
                 )
-                .forEach((group, students) -> {
-                    float average = (float) (students.size()) / N;
-                    System.out.printf("%s -> %s\n", group, average);
-                });
+                .forEach(
+                            (group, students) -> {
+                                float average = (float) (students.size()) / N;
+                                System.out.printf("%s -> %s\n", group, average);
+                            }
+                );
     }
 }

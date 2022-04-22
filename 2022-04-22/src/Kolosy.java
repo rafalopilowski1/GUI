@@ -1,14 +1,10 @@
 package src;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class StudentKolos {
     private String name;
@@ -21,39 +17,18 @@ class StudentKolos {
         this.score = score;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getGroup() {
         return group;
     }
 
-    public int getScore() {
-        return score;
-    }
-
     @Override
     public String toString() {
-        return String.format("%s-%s",name,score);
+        return String.format("%s(%s)-%s",name,group,score);
     }
 }
 
 public class Kolosy {
     public static void main(String[] args) throws IOException {
-//        byte[] array = {};
-//        try {
-//            FileInputStream fis = new FileInputStream("scores.txt");
-//            array = fis.readAllBytes();
-//            fis.close();
-//        }
-//        catch (IOException exception) {
-//            exception.printStackTrace();
-//        }
-//        String text = new String(array);
-//        String[] lines = text.split("\\n");
-
-        /*Arrays.stream(lines)*/
         Files
                 .lines(
                     Paths.get("2022-04-22/scores.txt")
