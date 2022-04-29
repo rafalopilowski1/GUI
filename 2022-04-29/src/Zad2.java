@@ -9,6 +9,7 @@
 • Po kilku takich cyklach (na przykład dziesięciu), wątek główny zatrzymuje
   wszystkie wątki, które z kolei wypisują komunikat o końcu swojej pracy.
  */
+package src;
 
 import java.util.ArrayList;
 
