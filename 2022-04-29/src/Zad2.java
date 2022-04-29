@@ -13,71 +13,76 @@ package src;
 
 import java.util.ArrayList;
 
-class MyThread extends Thread {
+class LetterThread extends Thread {
     private final Character letter;
 
-    private boolean locked;
+    private boolean suspended;
 
-    synchronized public void setLocked(boolean locked) {
-        this.locked = locked;
+    synchronized public void setSuspended(boolean suspended) {
+        this.suspended = suspended;
     }
 
-    public MyThread(Character letter) {
+    public LetterThread(Character letter) {
         super();
         this.setName("MyThread " + letter + " " + this.getId());
         this.letter = letter;
-        this.locked = false;
+        this.suspended = false;
     }
 
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
-            if (locked) {
+            while (suspended) {
                 try {
                     synchronized (this) {
                         wait();
                     }
                 } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
+                    return;
                 }
             }
             System.out.print(letter);
             try {
                 Thread.sleep((long) (Math.random() * 900 + 100));
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                return;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return letter.toString();
     }
 }
 
 class MyThreadManager {
-    private final ArrayList<MyThread> threads;
+    private final ArrayList<LetterThread> threads;
     private Integer currentSuspended;
 
     public MyThreadManager(String letters) {
         this.threads = new ArrayList<>();
         this.currentSuspended = 0;
-        populateThreads(letters);
+        addThreads(letters);
     }
 
-    private void populateThreads(String letters) {
-        for (var letter : letters.toCharArray()) threads.add(new MyThread(letter));
+    private void addThreads(String letters) {
+        for (var letter : letters.toCharArray()) threads.add(new LetterThread(letter));
     }
 
     void start() throws InterruptedException {
         // Not starting first thread
         for (int j = 1; j < threads.size(); j++) {
-            MyThread t = threads.get(j);
+            LetterThread t = threads.get(j);
             System.out.printf("Starting %s!\n", t);
         }
+        System.out.printf("Starting main loop with %s threads!\n", threads.size());
 
         for (int i = 1; i < threads.size(); i++) {
-            MyThread t = threads.get(i);
+            LetterThread t = threads.get(i);
             t.start();
         }
 
-        System.out.printf("Starting main loop with %s threads!\n", threads.size());
         for (int i = 0; i < 20; i++) {
             Thread.sleep(1000);
             switchSuspense();
@@ -94,20 +99,20 @@ class MyThreadManager {
         var nextToSuspend = threads.get(currentSuspended);
         System.out.printf("\nWaking up %s and suspending %s\n", previousSuspended, nextToSuspend);
         if (previousSuspended.isAlive()) {
-            previousSuspended.setLocked(false);
+            previousSuspended.setSuspended(false);
             synchronized (previousSuspended) {
                 previousSuspended.notify();
             }
         } else
             previousSuspended.start();
-        nextToSuspend.setLocked(true);
+        nextToSuspend.setSuspended(true);
     }
 }
 
 
 public class Zad2 {
     public static void main(String[] args) throws InterruptedException {
-        var manager = new MyThreadManager("ABCDŁĘ");
+        var manager = new MyThreadManager("ABCDEFGHIJKLMNOPQRSTUVWYZ");
         manager.start();
     }
 }
