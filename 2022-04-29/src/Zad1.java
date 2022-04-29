@@ -47,7 +47,8 @@ public class Zad1 {
         letters.start();
         try {
             Thread.sleep(5000);
-        } catch (InterruptedException ignore) {
+        } catch (InterruptedException e) {
+            return;
         }
         letters.stop();
         System.out.println("\nProgram completed.");
