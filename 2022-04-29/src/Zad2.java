@@ -37,12 +37,16 @@ class MyThread extends Thread {
                     synchronized (this) {
                         wait();
                     }
-                } catch (InterruptedException ignored) {}
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
             System.out.print(letter);
             try {
                 Thread.sleep((long) (Math.random() * 900 + 100));
-            } catch (InterruptedException ignored) {}
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 }
@@ -66,6 +70,10 @@ class MyThreadManager {
         for (int j = 1; j < threads.size(); j++) {
             MyThread t = threads.get(j);
             System.out.printf("Starting %s!\n", t);
+        }
+
+        for (int i = 1; i < threads.size(); i++) {
+            MyThread t = threads.get(i);
             t.start();
         }
 
@@ -80,7 +88,7 @@ class MyThreadManager {
     }
 
 
-    void switchSuspense() throws InterruptedException {
+    void switchSuspense() {
         var previousSuspended = threads.get(currentSuspended);
         currentSuspended = (currentSuspended + 1) % threads.size();
         var nextToSuspend = threads.get(currentSuspended);
