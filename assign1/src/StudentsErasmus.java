@@ -2,7 +2,7 @@ package src;
 
 import java.util.Arrays;
 
-public class People {
+public class StudentsErasmus {
     public static void main(String[] args) {
         Student[] studs = {
                 new Student("Poland", "Jan", "Kowalski"),
@@ -37,17 +37,17 @@ enum PersonType {
     Citizen
 }
 
-class Person {
+class StudentPerson {
     protected String firstname;
     protected String lastname;
     protected String country;
 
-    protected Person(String country, String firstname, String lastname) {
+    protected StudentPerson(String country, String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.country = country;
     }
-    protected static int check_values(Person first, Person o, PersonType type) {
+    protected static int check_values(StudentPerson first, StudentPerson o, PersonType type) {
         int firstname_check = first.firstname.compareTo(o.firstname);
         int lastname_check = first.lastname.compareTo(o.lastname);
         int country_check = first.country.compareTo(o.country);
@@ -74,22 +74,22 @@ class Person {
     }
 }
 
-class Student extends Person implements Comparable<Student> {
+class Student extends StudentPerson implements Comparable<Student> {
     protected Student(String country, String firstname, String lastname) {
         super(country, firstname, lastname);
     }
     @Override
     public int compareTo(Student o) {
-        return Person.check_values(this, o, PersonType.Student);
+        return StudentPerson.check_values(this, o, PersonType.Student);
     }
 }
 
-class Citizen extends Person implements Comparable<Citizen> {
+class Citizen extends StudentPerson implements Comparable<Citizen> {
     protected Citizen(String country, String firstname, String lastname) {
         super(country, firstname, lastname);
     }
     @Override
     public int compareTo(Citizen o) {
-        return Person.check_values(this, o, PersonType.Citizen);
+        return StudentPerson.check_values(this, o, PersonType.Citizen);
     }
 }
