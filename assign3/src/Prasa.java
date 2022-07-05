@@ -1,8 +1,11 @@
-package src;
-
 import java.util.*;
 
 public class Prasa {
+    /**
+     * The Observer pattern is a software design pattern in which an object, called the subject, maintains a list of its
+     * dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their
+     * methods.
+     */
     public static void main(String[] args) {
         Person john = new Person("John");
         Person kate = new Person("Kate");
@@ -41,6 +44,11 @@ enum Topics {
     SPORT
 }
 
+/**
+ * The PressAgency class has a list of subscribers, and each subscriber has a list of topics they are subscribed to. When
+ * the PressAgency broadcasts a headline, it adds the headline to the list of headlines for each subscriber who is
+ * subscribed to that topic
+ */
 class Person {
     static int count = 1;
     int id;
@@ -48,6 +56,7 @@ class Person {
     List<Topics> subscribedTopics;
     Map<Topics, List<String>> receivedNews;
 
+    // The constructor for the Person class. It is called when a new Person object is created.
     public Person(String name) {
         id = count;
         this.name = name;
@@ -55,6 +64,13 @@ class Person {
         subscribedTopics = new ArrayList<>();
         receivedNews = new HashMap<>();
     }
+
+    /**
+     * The function iterates through the receivedNews map, and for each topic, it iterates through the list of news for
+     * that topic, and prints the news
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -73,19 +89,49 @@ class Person {
 
 class PressAgency {
     List<Person> subscribers;
+
+    // The constructor for the PressAgency class. It is called when a new PressAgency object is created.
     PressAgency() {
         subscribers = new ArrayList<>();
     }
+
+    /**
+     * If the studentPerson is not already in the subscribers list, add them to the list. Then, add the topic to the
+     * studentPerson's subscribedTopics list
+     *
+     * @param topic The topic that the student wants to subscribe to.
+     * @param studentPerson The person object that is subscribing to the topic.
+     */
     public void subscribe(Topics topic, Person studentPerson) {
         if (!subscribers.contains(studentPerson))
             subscribers.add(studentPerson);
         subscribers.get(subscribers.indexOf(studentPerson)).subscribedTopics.add(topic);
     }
-    public void unsubscribe(Topics topic, Person studentPerson) {
+
+    /**
+     * If the person is a subscriber, and the person is subscribed to the topic, then remove the topic from the person's
+     * subscribed topics
+     *
+     * @param topic The topic to unsubscribe from.
+     * @param studentPerson The person who wants to unsubscribe from the topic.
+     */
+    public void unsubscribe(Topics topic, Person studentPerson) throws IllegalArgumentException {
         if (!subscribers.contains(studentPerson))
             throw new IllegalArgumentException("Person isn't an subscriber!");
-        subscribers.get(subscribers.indexOf(studentPerson)).subscribedTopics.remove(topic);
+        List<Topics> subscribersTopics = subscribers.get(subscribers.indexOf(studentPerson)).subscribedTopics;
+        if (subscribersTopics.contains(topic))
+            subscribersTopics.remove(topic);
+        else
+            throw new IllegalArgumentException(String.format("\"%s\" didn't subscribe to %s!", studentPerson.name, topic.toString()));
     }
+
+    /**
+     * For each person who is subscribed to the given topic, add the given headline to the list of headlines they've
+     * received for that topic.
+     *
+     * @param topic the topic of the news
+     * @param headline the headline of the news article
+     */
     public void broadcast(Topics topic, String headline) {
         subscribers
                 .stream()
@@ -95,7 +141,7 @@ class PressAgency {
                 )
                 .forEach((person) -> person
                         .receivedNews
-                        .computeIfAbsent(topic, k -> new ArrayList<>())
+                        .computeIfAbsent(topic, key -> new ArrayList<>())
                         .add(headline));
     }
 }
